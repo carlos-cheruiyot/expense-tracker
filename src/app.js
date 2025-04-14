@@ -7,6 +7,29 @@ const App = () => {
     const [expenses, setExpenses] = useState([]);
     const [search, setSearch] = useState('');
 
+    const [sortKey, setSortKey] = useState(null);
+    const [sortAsc, setSortAsc] = useState(true);
+    
+    const handleSort = (key) => {
+        if (sortKey === key) {
+          setSortAsc(!sortAsc); // toggle direction
+        } else {
+          setSortKey(key);
+          setSortAsc(true);
+        }
+      };
+
+
+      const sortedExpenses = [...filteredExpenses].sort((a, b) => {
+        if (!sortKey) return 0;
+        const valA = a[sortKey].toLowerCase();
+        const valB = b[sortKey].toLowerCase();
+        if (valA < valB) return sortAsc ? -1 : 1;
+        if (valA > valB) return sortAsc ? 1 : -1;
+        return 0;
+      });
+
+
     const handleAddExpense = (expense) => {
         setExpenses([...expenses, { ...expense, id: Date.now().toString() }]);
       };
