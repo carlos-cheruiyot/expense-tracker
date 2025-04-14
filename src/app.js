@@ -10,7 +10,9 @@ const App = () => {
     const handleAddExpense = (expense) => {
         setExpenses([...expenses, { ...expense, id: Date.now().toString() }]);
       };
-    
+      const handleDelete = (id) => {
+        setExpenses(expenses.filter(exp => exp.id !== id));
+      };
 
       const filteredExpenses = expenses.filter(
         (expense) =>
