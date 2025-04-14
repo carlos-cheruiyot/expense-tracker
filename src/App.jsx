@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import ExpenseForm from './components/ExpenseForm';
-import SearchBar from './components/SearchBar';
-import ExpenseTable from './components/ExpenseTable';
+import ExpenseForm from './components/ExpenseForm.jsx';
+import SearchBar from './components/SearchBar.jsx';
+import ExpenseTable from './components/ExpenseTable.jsx';
 
 const App = () => {
     const [expenses, setExpenses] = useState([]);
     const [search, setSearch] = useState('');
 
+    
+
+
     const handleAddExpense = (expense) => {
         setExpenses([...expenses, { ...expense, id: Date.now().toString() }]);
       };
-      const handleDelete = (id) => {
-        setExpenses(expenses.filter(exp => exp.id !== id));
-      };
+      
 
       const filteredExpenses = expenses.filter(
         (expense) =>
